@@ -1,0 +1,30 @@
+{
+	"name": "kidsfactory-shop-admin",
+	"version": "1.0.0",
+	"description": "kidsfactory shop admin project",
+	"main": "index.js",
+	"scripts": {
+		"init": "npm i -g lerna@3.20.2 commitizen @storybook/cli typescript",
+		"postinstall": "lerna bootstrap",
+		"start": "lerna run start --parallel",
+		"tsc": "lerna exec --stream -- tsc -p .",
+		"clean": "rm -rf node_modules && lerna clean",
+		"commit": "git-cz"
+	},
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {
+		"@commitlint/cli": "^8.3.5",
+		"@commitlint/config-lerna-scopes": "^8.3.4",
+		"@commitlint/prompt": "^8.3.5",
+		"@types/node": "^13.7.7",
+		"commitizen": "^4.0.3",
+		"lerna": "^3.20.2",
+		"typescript": "^3.8.3"
+	},
+	"config": {
+		"commitizen": {
+			"path": "@commitlint/prompt"
+		}
+	}
+}
