@@ -14,18 +14,30 @@
 const lernaScopesConfig = require("@commitlint/config-lerna-scopes");
 const scopes = ["release"];
 const getScopes = (initialEnum = []) =>
-	lernaScopesConfig.utils
-		.getPackages()
-		.then(packageList => initialEnum.concat(packageList))
-		.then(scopeList => [2, "always", scopeList]);
+  lernaScopesConfig.utils
+    .getPackages()
+    .then(packageList => initialEnum.concat(packageList))
+    .then(scopeList => [2, "always", scopeList]);
 
 module.exports = {
-	rules: {
-		"scope-enum": () => getScopes(scopes),
-		"type-enum": [
-			2,
-			"always",
-			["build", "ci", "chore", "docs", "feat", "fix", "perf", "refactor", "revert", "style", "test"]
-		]
-	}
+  rules: {
+    "scope-enum": () => getScopes(scopes),
+    "type-enum": [
+      2,
+      "always",
+      [
+        "build",
+        "ci",
+        "chore",
+        "docs",
+        "feat",
+        "fix",
+        "perf",
+        "refactor",
+        "revert",
+        "style",
+        "test",
+      ],
+    ],
+  },
 };

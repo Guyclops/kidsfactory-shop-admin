@@ -1,0 +1,29 @@
+{
+  "env": {
+    "node": true,
+    "es6": true,
+    "mocha": true
+  },
+  "ignorePatterns": [
+    "node_modules/",
+    ".ebextensions/",
+    "public",
+    "build",
+    "gatsby*",
+    "commitlint*"
+  ],
+  "plugins": ["prettier", "@typescript-eslint"],
+  "extends": ["eslint:recommended", "plugin:react/recommended"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "sourceType": "module"
+  },
+  "rules": {
+    "prettier/prettier": "error",
+    "no-var": "error",
+    "quotes": ["error", "double", { "allowTemplateLiterals": true }],
+    "no-unused-vars": ["error", { "argsIgnorePattern": "next" }],
+    "react/prop-types": [2, { "ignore": ["children"] }],
+    "@typescript-eslint/explicit-function-return-type": "off"
+  }
+}

@@ -8,6 +8,7 @@
 		"postinstall": "lerna bootstrap",
 		"start": "lerna run start --parallel",
 		"tsc": "lerna exec --stream -- tsc -p .",
+		"front-build": "lerna exec --scope=@kidsfactory-shop-admin/front -- npm run build",
 		"clean": "rm -rf node_modules && lerna clean",
 		"commit": "git-cz"
 	},
@@ -18,13 +19,34 @@
 		"@commitlint/config-lerna-scopes": "^8.3.4",
 		"@commitlint/prompt": "^8.3.5",
 		"@types/node": "^13.7.7",
+		"@typescript-eslint/eslint-plugin": "^2.22.0",
+		"@typescript-eslint/parser": "^2.22.0",
 		"commitizen": "^4.0.3",
+		"eslint": "^6.8.0",
+		"eslint-config-prettier": "^6.10.0",
+		"eslint-plugin-prettier": "^3.1.2",
+		"eslint-plugin-react": "^7.18.3",
+		"husky": "^4.2.3",
 		"lerna": "^3.20.2",
+		"lint-staged": "^10.0.8",
+		"prettier": "^1.19.1",
 		"typescript": "^3.8.3"
 	},
 	"config": {
 		"commitizen": {
 			"path": "@commitlint/prompt"
+		}
+	},
+	"lint-staged": {
+		"*.{js,jsx,ts,tsx}": [
+			"eslint --fix",
+			"prettier --write"
+		]
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "lint-staged",
+			"commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
 		}
 	}
 }
