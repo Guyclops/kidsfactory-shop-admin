@@ -9,11 +9,17 @@
     ".ebextensions/",
     "public",
     "build",
+    "dist",
     "gatsby*",
     "commitlint*"
   ],
   "plugins": ["prettier", "@typescript-eslint"],
-  "extends": ["eslint:recommended", "plugin:react/recommended"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "sourceType": "module"
@@ -24,6 +30,7 @@
     "quotes": ["error", "double", { "allowTemplateLiterals": true }],
     "no-unused-vars": ["error", { "argsIgnorePattern": "next" }],
     "react/prop-types": [2, { "ignore": ["children"] }],
+    "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "next" }],
     "@typescript-eslint/explicit-function-return-type": "off"
   }
 }
