@@ -1,4 +1,4 @@
-import { error } from "../cores/result";
+import { error } from "../cores/result.core";
 import httpStatus from "../configs/httpStatus";
 
 const { statusCode } = httpStatus;
@@ -6,7 +6,7 @@ const { statusCode } = httpStatus;
 const result = {
   json: {
     notFound: (req, res, next) => {
-      next(error.notFound?.());
+      next(error.notFound());
     },
     result: (data, req, res, next) => {
       if (data?.type === "Success") {

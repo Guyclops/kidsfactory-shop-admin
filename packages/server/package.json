@@ -11,11 +11,13 @@
   "dependencies": {
     "@types/express": "^4.17.3",
     "dotenv": "^8.2.0",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "ts-node": "^8.6.2"
   },
   "devDependencies": {
+    "@types/jsonwebtoken": "^8.3.8",
     "nodemon": "^2.0.2",
-    "ts-node": "^8.6.2",
     "typescript": "^3.8.3"
   }
 }
