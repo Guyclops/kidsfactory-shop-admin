@@ -9,6 +9,7 @@
 		"start": "lerna run start --parallel",
 		"tsc": "lerna exec --ignore @kidsfactory-shop-admin/front --stream -- tsc -p .",
 		"front-build": "lerna exec --scope=@kidsfactory-shop-admin/front -- npm run build",
+		"storybook-build": "lerna exec --scope=@kidsfactory-shop-admin/ui -- npm run build",
 		"clean": "rm -rf node_modules && lerna clean",
 		"commit": "git-cz"
 	},
