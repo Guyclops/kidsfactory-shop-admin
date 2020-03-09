@@ -6,6 +6,5 @@
     "noImplicitAny": false
   },
   "include": ["./src", "./stories"],
-  "exclude": ["node_modules", "dist"],
-  "references": [{ "path": "../ui" }]
+  "exclude": ["node_modules", "dist"]
 }
