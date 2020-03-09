@@ -3,7 +3,7 @@ import { jsx, css } from "@emotion/core";
 import { TextField } from "@material-ui/core";
 import { withKnobs } from "@storybook/addon-knobs";
 import "./styles.css";
-import LoginField from "../src/input/LoginField";
+import LoginField from "../src/components/input/LoginField";
 
 export default {
   title: "Component|Input/TextInput",

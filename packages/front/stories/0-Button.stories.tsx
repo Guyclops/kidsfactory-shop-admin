@@ -4,7 +4,7 @@ import { action } from "@storybook/addon-actions";
 import { Button } from "@material-ui/core";
 import { withKnobs } from "@storybook/addon-knobs";
 import "./styles.css";
-import LoginButton from "../src/button/LoginButton";
+import LoginButton from "../src/components/button/LoginButton";
 
 export default {
   title: "Component|Button",
