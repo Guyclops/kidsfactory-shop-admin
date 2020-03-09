@@ -10,5 +10,5 @@ public
 dist
 .cache/
 
-
 storybook-static
+cypress

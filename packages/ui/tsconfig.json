@@ -5,8 +5,10 @@
     "outDir": "./dist",
     "jsx": "react",
     "strictNullChecks": false,
-    "noImplicitAny": false
+    "noImplicitAny": false,
+    "esModuleInterop": true,
+    "strictFunctionTypes": false
   },
-  "include": ["./src", "./index.tsx"],
+  "include": ["./src", "./index.tsx", "./stories"],
   "exclude": ["node_modules", "lib", "tests"]
 }

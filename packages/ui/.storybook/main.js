@@ -5,6 +5,7 @@ module.exports = {
     "@storybook/addon-knobs",
     "@storybook/addon-docs",
     "@storybook/preset-typescript",
+    "@storybook/addon-viewport",
   ],
   webpackFinal: async config => {
     config.module.rules.push({
