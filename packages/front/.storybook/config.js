@@ -1,4 +1,6 @@
 import { configure } from "@storybook/react";
+import { action } from "@storybook/addon-actions";
+
 configure(require.context("../stories", true, /\\.stories\\.(js|tsx)$/), module);
 // Gatsby's Link overrides:
 // Gatsby defines a global called ___loader to prevent its method calls from creating console errors you override it here

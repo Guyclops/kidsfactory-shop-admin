@@ -2,20 +2,16 @@ import React from "react";
 import {
   AppBar,
   CssBaseline,
-  Divider,
   Drawer,
   Hidden,
   IconButton,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
   Toolbar,
   Typography,
 } from "@material-ui/core";
-import { MoveToInbox as InboxIcon, Mail as MailIcon, Menu as MenuIcon } from "@material-ui/icons";
+import { Menu as MenuIcon } from "@material-ui/icons";
 import { makeStyles, useTheme, Theme, createStyles } from "@material-ui/core/styles";
 import "./layout.css";
+import Sidebar from "./sidebar";
 
 const drawerWidth = 240;
 
@@ -56,12 +52,10 @@ const useStyles = makeStyles((theme: Theme) =>
 interface LayoutProps {
   /** content */
   children?: React.ReactNode;
-  /** title */
-  title?: string;
 }
 
 export default function Layout(props: LayoutProps) {
-  const { children, title } = props;
+  const { children } = props;
   const classes = useStyles();
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -69,30 +63,6 @@ export default function Layout(props: LayoutProps) {
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
-
-  const drawer = (
-    <div>
-      <div className={classes.toolbar} />
-      <Divider />
-      <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {["All mail", "Trash", "Spam"].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-    </div>
-  );
 
   return (
     <div className={classes.root}>
@@ -109,7 +79,7 @@ export default function Layout(props: LayoutProps) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-            {title}
+            Kidsfactory 관리
           </Typography>
         </Toolbar>
       </AppBar>
@@ -128,7 +98,7 @@ export default function Layout(props: LayoutProps) {
               keepMounted: true, // Better open performance on mobile.
             }}
           >
-            {drawer}
+            <Sidebar />
           </Drawer>
         </Hidden>
         <Hidden xsDown implementation="css">
@@ -139,7 +109,7 @@ export default function Layout(props: LayoutProps) {
             variant="permanent"
             open
           >
-            {drawer}
+            <Sidebar />
           </Drawer>
         </Hidden>
       </nav>

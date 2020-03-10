@@ -3,7 +3,7 @@ import { jsx, css } from "@emotion/core";
 import ColorItem from "../src/components/item/ColorItem";
 
 export default {
-  title: "Component|Colors",
+  title: "Colors|Color",
   component: ColorItem,
 };
 
