@@ -7,6 +7,13 @@ module.exports = {
     "@storybook/preset-typescript",
     "@storybook/addon-viewport",
   ],
+  global: {
+    ___loader: {
+      enqueue: () => {},
+      hovering: () => {},
+    },
+    __PATH_PREFIX__: "",
+  },
   webpackFinal: async config => {
     config.module.rules.push({
       test: /\.(ts|tsx)$/,

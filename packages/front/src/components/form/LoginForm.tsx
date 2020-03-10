@@ -19,7 +19,6 @@ const style = css`
   flex-direction: column;
   justify-content: space-between;
   width: 400px;
-  min-height: 400px;
   height: 400px;
   box-shadow: 0px 2px 12px 0px rgba(0, 0, 0, 0.09);
   padding: 30px 30px;
