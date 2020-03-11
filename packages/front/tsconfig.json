@@ -3,7 +3,9 @@
   "compilerOptions": {
     "jsx": "react",
     "strictNullChecks": false,
-    "noImplicitAny": false
+    "noImplicitAny": false,
+    "experimentalDecorators": true,
+    "allowJs": true
   },
   "include": ["./src", "./stories"],
   "exclude": ["node_modules", "dist"]

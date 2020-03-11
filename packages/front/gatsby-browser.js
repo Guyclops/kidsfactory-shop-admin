@@ -4,4 +4,6 @@
  * See: https://www.gatsbyjs.org/docs/browser-apis/
  */
 
-// You can delete this file if you're not using it
+import WrapProvider from "./wrap-provider";
+
+export const wrapRootElement = WrapProvider;

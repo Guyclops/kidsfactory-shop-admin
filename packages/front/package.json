@@ -23,6 +23,8 @@
     "gatsby-plugin-web-font-loader": "^1.0.4",
     "gatsby-source-filesystem": "^2.1.46",
     "gatsby-transformer-sharp": "^2.3.13",
+    "mobx": "^5.15.4",
+    "mobx-react": "^6.1.8",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
     "react-docgen-typescript-loader": "^3.7.0",
@@ -54,6 +56,7 @@
   "devDependencies": {
     "@babel/core": "^7.8.7",
     "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/plugin-proposal-decorators": "^7.8.3",
     "@storybook/addon-actions": "^5.3.14",
     "@storybook/addon-docs": "^5.3.14",
     "@storybook/addon-knobs": "^5.3.14",
