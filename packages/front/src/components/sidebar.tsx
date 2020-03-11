@@ -39,7 +39,7 @@ function Sidebar() {
           <ListItemIcon>
             <DashboardIcon />
           </ListItemIcon>
-          <ListItemText primary={"대시 보드"} />
+          <ListItemText primary={"대시 보드2"} />
         </ListItem>
         <Divider />
         <ListItem button onClick={handleClick}>

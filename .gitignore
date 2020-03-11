@@ -12,3 +12,6 @@ dist
 
 storybook-static
 cypress
+
+__tests__/
+__snapshots__/

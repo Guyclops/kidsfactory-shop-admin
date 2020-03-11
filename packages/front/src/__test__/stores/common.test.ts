@@ -1,4 +1,4 @@
-import Store from "..";
+import Store from "../../stores";
 
 describe("CommonStore test", () => {
   const { common } = new Store();

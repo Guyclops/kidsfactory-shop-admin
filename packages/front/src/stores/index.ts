@@ -1,4 +1,4 @@
-import CommonStore from "./common/common";
+import CommonStore from "./common";
 
 class Store {
   public common: CommonStore;
