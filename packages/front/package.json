@@ -42,7 +42,7 @@
     "start": "npm run develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
+    "test": "jest",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
@@ -65,9 +65,15 @@
     "@storybook/addons": "^5.3.14",
     "@storybook/preset-typescript": "^2.1.0",
     "@storybook/react": "^5.3.14",
+    "@types/jest": "^25.1.4",
+    "babel-jest": "^25.1.0",
     "babel-loader": "^8.0.6",
     "babel-plugin-remove-graphql-queries": "^2.7.24",
+    "babel-preset-gatsby": "^0.2.34",
     "babel-preset-react-app": "^9.1.1",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^25.1.0",
+    "react-test-renderer": "^16.13.0",
     "ts-loader": "^6.2.1"
   }
 }

@@ -1,12 +1,10 @@
 import { observable, action, computed } from "mobx";
-import Store from ".";
+import Store from "..";
 
 class CommonStore {
   root: Store;
-  @observable
-  public count = 0;
-  @observable
-  public todos = [];
+  @observable count = 0;
+  @observable todos = [];
 
   constructor(root: Store) {
     this.root = root;

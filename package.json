@@ -7,6 +7,7 @@
 		"init": "npm i -g lerna@3.20.2 commitizen @storybook/cli typescript",
 		"postinstall": "lerna bootstrap",
 		"start": "lerna run start --parallel",
+		"test": "lerna run test --parallel",
 		"tsc": "lerna exec --ignore @kidsfactory-shop-admin/front --stream -- tsc -p .",
 		"front-build": "lerna exec --scope=@kidsfactory-shop-admin/front -- npm run build",
 		"storybook-build": "lerna exec --scope=@kidsfactory-shop-admin/ui -- npm run build",
