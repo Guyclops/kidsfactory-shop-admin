@@ -5,9 +5,8 @@
     "strictNullChecks": false,
     "noImplicitAny": false,
     "experimentalDecorators": true,
-    "allowJs": true,
-    "types": ["jest"]
+    "allowJs": true
   },
-  "include": ["./src", "./stories"],
+  "include": ["./src"],
   "exclude": ["node_modules", "dist"]
 }
