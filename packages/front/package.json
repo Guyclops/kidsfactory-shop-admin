@@ -43,6 +43,7 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "test": "jest --verbose",
+    "test:cypress": "cypress run -b chrome",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
@@ -72,6 +73,7 @@
     "babel-plugin-remove-graphql-queries": "^2.7.24",
     "babel-preset-gatsby": "^0.2.34",
     "babel-preset-react-app": "^9.1.1",
+    "cypress": "^4.1.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^25.1.0",
     "react-test-renderer": "^16.13.0",
