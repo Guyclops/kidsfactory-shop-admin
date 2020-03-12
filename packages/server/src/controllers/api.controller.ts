@@ -1,34 +1,39 @@
 import { Request, Response, NextFunction } from "express";
 import { success } from "../cores/result.core";
-// import pool from '../models';
-import table from "../models/table";
-// const { sequelize } = pool;
+import signService from "../services/sign.services";
+import { authToken } from "../cores/misc.core";
+import { param } from "../cores/params.core";
 
 class ApiController {
-  public index = (req: Request, res: Response, next: NextFunction) => {
+  index(req: Request, res: Response, next: NextFunction) {
     try {
       next(success.ok("hello world3"));
     } catch (e) {
       next(e);
     }
-  };
+  }
 
-  public authTest = (req: Request, res: Response, next: NextFunction) => {
+  async postSignIn(req: Request, res: Response, next: NextFunction) {
     try {
-      next(success.ok("auth ok"));
+      param(req.body, "id");
+      param(req.body, "password");
+      const shop = await signService.signIn(req.body);
+      let token = null;
+      if (shop === null) {
+        next(success.ok({ shop, token }));
+      } else {
+        delete shop.s_pwd;
+        token = authToken.encodeToken({
+          no: shop.s_no,
+          id: shop.s_id,
+          enable: shop.s_enable,
+        });
+        next(success.ok({ shop, token }));
+      }
     } catch (e) {
       next(e);
     }
-  };
-
-  public getShops = async (req: Request, res: Response, next: NextFunction) => {
-    try {
-      const result = await table.Shops.findOne({ where: { s_no: 2 }, raw: true });
-      next(success.ok(result));
-    } catch (e) {
-      next(e);
-    }
-  };
+  }
 }
 
 const apiController: ApiController = new ApiController();

@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --exec ts-node src/server.ts"
+    "develop": "tsc -w --esModuleInterop --outDir ./dist",
+    "build": "tsc --esModuleInterop --outDir ./dist",
+    "start": "npm run build && nodemon dist/src/server.js"
   },
   "author": "",
   "license": "ISC",

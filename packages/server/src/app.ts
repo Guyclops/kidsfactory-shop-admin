@@ -13,6 +13,8 @@ class App {
 
   constructor() {
     this.application = express();
+    this.application.use(express.json());
+    this.application.use(express.urlencoded({ extended: false }));
     this.application.use(morgan(config.middleware.morgan));
     this.application.use(apiRoute.apiRouter);
     this.application.use(result[config.middleware.result].notFound);

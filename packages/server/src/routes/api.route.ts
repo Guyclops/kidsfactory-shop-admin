@@ -1,6 +1,5 @@
 import express from "express";
 import apiController from "../controllers/api.controller";
-import auth from "../middlewares/auth.middleware";
 
 class ApiRoute {
   public apiRouter: express.Router = express.Router();
@@ -11,8 +10,7 @@ class ApiRoute {
 
   public router() {
     this.apiRouter.get("/", apiController.index);
-    this.apiRouter.get("/authTest", auth.verify, apiController.authTest);
-    this.apiRouter.get("/shops", apiController.getShops);
+    this.apiRouter.post("/signIn", apiController.postSignIn);
   }
 }
 

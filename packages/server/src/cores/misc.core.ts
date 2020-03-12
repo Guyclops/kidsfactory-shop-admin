@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 import config from "../configs/config";
 
-const authToken = {
+export const authToken = {
   encodeToken: (obj, options = {}) => {
     return jwt.sign(obj, config.jwt.key, { ...options });
   },
@@ -13,5 +13,3 @@ const authToken = {
     }
   },
 };
-
-export { authToken };
