@@ -14,8 +14,8 @@ class App {
     this.application = express();
     this.application.use(morgan(config.middleware.morgan));
     this.application.use(apiRoute.apiRouter);
-    this.application.use(result.json.notFound);
-    this.application.use(result.json.result);
+    this.application.use(result[config.middleware.result].notFound);
+    this.application.use(result[config.middleware.result].result);
   }
 }
 
