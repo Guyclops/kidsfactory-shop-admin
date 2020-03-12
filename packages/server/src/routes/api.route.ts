@@ -12,6 +12,7 @@ class ApiRoute {
   public router() {
     this.apiRouter.get("/", apiController.index);
     this.apiRouter.get("/authTest", auth.verify, apiController.authTest);
+    this.apiRouter.get("/shops", apiController.getShops);
   }
 }
 

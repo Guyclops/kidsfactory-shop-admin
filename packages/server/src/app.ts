@@ -4,9 +4,10 @@ import apiRoute from "./routes/api.route";
 import morgan from "morgan";
 import config from "./configs/config";
 import moment from "moment-timezone";
+import pool from "./models";
 
 morgan.token("date", () => moment.tz(config.timezone).format("YYYY-MM-DD HH:mm:ss"));
-
+pool.connectionTest();
 class App {
   public application: express.Application;
 
