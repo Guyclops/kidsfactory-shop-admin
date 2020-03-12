@@ -3,15 +3,15 @@ import apiController from "../controllers/api.controller";
 import auth from "../middlewares/auth.middleware";
 
 class ApiRoute {
-  public ApiRouter: express.Router = express.Router();
+  public apiRouter: express.Router = express.Router();
 
   constructor() {
     this.router();
   }
 
   public router() {
-    this.ApiRouter.get("/", apiController.index);
-    this.ApiRouter.get("/authTest", auth.verify, apiController.authTest);
+    this.apiRouter.get("/", apiController.index);
+    this.apiRouter.get("/authTest", auth.verify, apiController.authTest);
   }
 }
 
