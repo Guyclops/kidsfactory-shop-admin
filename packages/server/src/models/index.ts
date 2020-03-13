@@ -12,6 +12,7 @@ class Pool {
       port: database.port,
       logging: type !== "production" ? console.log : false,
       dialectOptions: {
+        dateStrings: true,
         typeCast: true,
       },
       timezone: "+09:00",

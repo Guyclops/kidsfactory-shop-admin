@@ -3,6 +3,7 @@ import { success } from "../cores/result.core";
 import signService from "../services/sign.services";
 import { authToken } from "../cores/misc.core";
 import { param } from "../cores/params.core";
+import roomService from "../services/room.services";
 
 class ApiController {
   index(req: Request, res: Response, next: NextFunction) {
@@ -30,6 +31,16 @@ class ApiController {
         });
         next(success.ok({ shop, token }));
       }
+    } catch (e) {
+      next(e);
+    }
+  }
+
+  async getRooms(req: Request, res: Response, next: NextFunction) {
+    try {
+      const no = req.admin.no;
+      const result = await roomService.getRooms(no);
+      next(success.ok({ result }));
     } catch (e) {
       next(e);
     }

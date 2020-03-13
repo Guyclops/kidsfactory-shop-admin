@@ -1,7 +1,7 @@
 import { DataTypes, Model } from "sequelize";
-import index from "./index";
+import pool from ".";
 
-const sequelize = index.sequelize;
+const sequelize = pool.sequelize;
 
 class Shops extends Model {}
 
