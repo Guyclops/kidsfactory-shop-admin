@@ -89,8 +89,9 @@ Users.init(
   },
   {
     sequelize,
-    timestamps: false,
     modelName: "users",
+    tableName: "users",
+    timestamps: false,
     indexes: [
       { name: "u_suggested_code", fields: ["u_suggested_code"] },
       { name: "u_id", fields: ["u_id"] },

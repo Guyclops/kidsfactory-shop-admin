@@ -14,6 +14,7 @@ class Pool {
       dialectOptions: {
         dateStrings: true,
         typeCast: true,
+        decimalNumbers: true,
       },
       timezone: "+09:00",
       pool: {

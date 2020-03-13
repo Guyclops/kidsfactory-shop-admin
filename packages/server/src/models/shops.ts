@@ -447,6 +447,7 @@ Shops.init(
   {
     sequelize,
     modelName: "shops",
+    tableName: "shops",
     timestamps: false,
     defaultScope: {
       attributes: [

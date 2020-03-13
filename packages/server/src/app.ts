@@ -6,8 +6,10 @@ import config from "./configs/config";
 import moment from "moment-timezone";
 import pool from "./models";
 
-morgan.token("date", () => moment.tz(config.timezone).format("YYYY-MM-DD HH:mm:ss"));
+moment.tz.setDefault(config.timezone);
+morgan.token("date", () => moment().format("YYYY-MM-DD HH:mm:ss"));
 pool.connectionTest();
+
 class App {
   public application: express.Application;
 

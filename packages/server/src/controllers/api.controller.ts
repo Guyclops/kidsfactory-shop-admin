@@ -4,6 +4,7 @@ import signService from "../services/sign.services";
 import { authToken } from "../cores/misc.core";
 import { param } from "../cores/params.core";
 import roomService from "../services/room.services";
+import logvisitService from "../services/logvisit.services";
 
 class ApiController {
   index(req: Request, res: Response, next: NextFunction) {
@@ -38,9 +39,12 @@ class ApiController {
 
   async getRooms(req: Request, res: Response, next: NextFunction) {
     try {
-      const no = req.admin.no;
-      const result = await roomService.getRooms(no);
-      next(success.ok({ result }));
+      const sNo = req.admin.no;
+      const [rooms, visit] = await Promise.all([
+        roomService.getRooms(sNo),
+        logvisitService.sumOutvisitor(sNo),
+      ]);
+      next(success.ok({ rooms, visit }));
     } catch (e) {
       next(e);
     }

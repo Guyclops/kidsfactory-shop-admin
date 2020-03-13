@@ -84,8 +84,9 @@ Rooms.init(
   },
   {
     sequelize,
-    timestamps: false,
     modelName: "rooms",
+    tableName: "rooms",
+    timestamps: false,
     indexes: [
       { name: "r_s_no", fields: ["r_s_no"] },
       { name: "r_u_no", fields: ["r_u_no"] },
