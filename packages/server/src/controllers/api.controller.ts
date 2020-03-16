@@ -4,7 +4,8 @@ import signService from "../services/sign.services";
 import { authToken } from "../cores/misc.core";
 import { param } from "../cores/params.core";
 import roomService from "../services/room.services";
-import logvisitService from "../services/logvisit.services";
+import logVisitService from "../services/logvisit.services";
+import shopUserService from "../services/shopuser.services";
 
 class ApiController {
   index(req: Request, res: Response, next: NextFunction) {
@@ -39,12 +40,31 @@ class ApiController {
 
   async getRooms(req: Request, res: Response, next: NextFunction) {
     try {
-      const sNo = req.admin.no;
+      const sno = req.admin.no;
       const [rooms, visit] = await Promise.all([
-        roomService.getRooms(sNo),
-        logvisitService.sumOutvisitor(sNo),
+        roomService.getRooms(sno),
+        logVisitService.sumOutvisitor(sno),
       ]);
-      next(success.ok({ rooms, visit }));
+      let useAdult = 0;
+      let useChild = 0;
+      rooms.map((item: any) => {
+        useAdult += item.r_adult;
+        useChild += item.r_child;
+      });
+      next(success.ok({ rooms, visit, use: { useAdult, useChild } }));
+    } catch (e) {
+      next(e);
+    }
+  }
+
+  async shopUserInfo(req: Request, res: Response, next: NextFunction) {
+    try {
+      const sno = req.admin.no;
+      const [user, trend] = await Promise.all([
+        shopUserService.totalShopUserCount(sno),
+        shopUserService.newShopUserTrend(sno),
+      ]);
+      next(success.ok({ user, trend }));
     } catch (e) {
       next(e);
     }

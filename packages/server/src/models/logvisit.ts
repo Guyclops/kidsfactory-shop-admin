@@ -1,5 +1,10 @@
 import { DataTypes, Model } from "sequelize";
 import pool from ".";
+import Shops from "./shops";
+import Users from "./users";
+import Rooms from "./rooms";
+import ShopUsers from "./shopusers";
+// import ShopUsers from "./shopusers";
 
 const sequelize = pool.sequelize;
 
@@ -102,5 +107,10 @@ LogVisits.init(
     ],
   },
 );
+
+LogVisits.belongsTo(Shops, { foreignKey: "l_s_no", targetKey: "s_no", as: "shop" });
+LogVisits.belongsTo(Users, { foreignKey: "l_u_no", targetKey: "u_no", as: "user" });
+LogVisits.belongsTo(Rooms, { foreignKey: "l_r_no", targetKey: "r_no", as: "room" });
+LogVisits.belongsTo(ShopUsers, { foreignKey: "l_su_no", targetKey: "su_no", as: "shop_user" });
 
 export default LogVisits;
