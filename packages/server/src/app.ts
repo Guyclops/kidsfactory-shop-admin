@@ -5,6 +5,7 @@ import morgan from "morgan";
 import config from "./configs/config";
 import moment from "moment-timezone";
 import pool from "./models";
+import cors from "cors";
 
 moment.tz.setDefault(config.timezone);
 morgan.token("date", () => moment().format("YYYY-MM-DD HH:mm:ss"));
@@ -15,6 +16,7 @@ class App {
 
   constructor() {
     this.application = express();
+    this.application.use(cors());
     this.application.use(express.json());
     this.application.use(express.urlencoded({ extended: false }));
     this.application.use(morgan(config.middleware.morgan));
