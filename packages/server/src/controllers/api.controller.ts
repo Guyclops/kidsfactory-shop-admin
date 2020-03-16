@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { success } from "../cores/result.core";
 import signService from "../services/sign.services";
-import { authToken } from "../cores/misc.core";
+import { authToken, room } from "../cores/misc.core";
 import { param } from "../cores/params.core";
 import roomService from "../services/room.services";
 import logVisitService from "../services/logvisit.services";
@@ -50,6 +50,10 @@ class ApiController {
       rooms.map((item: any) => {
         useAdult += item.r_adult;
         useChild += item.r_child;
+        item.dataValues = {
+          ...item.dataValues,
+          time: room.useTime(item.r_in_date, item.r_before_min),
+        };
       });
       next(success.ok({ rooms, visit, use: { useAdult, useChild } }));
     } catch (e) {
