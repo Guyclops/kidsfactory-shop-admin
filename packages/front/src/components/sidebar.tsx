@@ -50,7 +50,7 @@ function Sidebar() {
           <ListItemIcon>
             <DashboardIcon />
           </ListItemIcon>
-          <ListItemText primary={"대시 보드2"} />
+          <ListItemText primary={"현재 매장 정보"} />
         </ListItem>
         <Divider />
         <ListItem button onClick={handleClick}>

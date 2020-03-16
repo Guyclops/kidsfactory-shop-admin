@@ -1,35 +1,83 @@
-import React, { useState, useCallback } from "react";
-import { Link } from "gatsby";
+import React from "react";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
 import { observer, inject } from "mobx-react";
-import Store from "../stores";
+import InfoCard from "../components/card/InfoCard";
+import MiniCard from "../components/card/MiniCard";
+import { ChildCare, CheckCircle, AccountCircle } from "@material-ui/icons";
+import {
+  Grid,
+  TableContainer,
+  TableHead,
+  TableBody,
+  Table,
+  TableRow,
+  TableCell,
+  makeStyles,
+  createStyles,
+} from "@material-ui/core";
 
-const IndexPage = (props: Store) => {
-  const { common } = props;
-  const [value, setValue] = useState(0);
+const useStyles = makeStyles(() =>
+  createStyles({
+    table: {
+      minWidth: 600,
+      margin: 0,
+    },
+  }),
+);
 
-  const increment = useCallback(() => {
-    setValue(value + 1);
-  }, [value]);
-
-  const decrement = useCallback(() => {
-    setValue(value - 1);
-  }, [value]);
-
+const IndexPage = () => {
+  const styles = useStyles();
   return (
     <Layout>
-      <SEO title="Home" />
-      <h1>component state {value}</h1>
-      <button onClick={increment}>+</button>
-      <button onClick={decrement}>-</button>
-
-      <h1>
-        mobx state {common.count} {common.unfinishedTodoCount}
-      </h1>
-      <button onClick={common.increment}>+</button>
-      <button onClick={common.decrement}>-</button>
-      <Link to="/page-2/">Go to page 2</Link>
+      <SEO title="현재 매장 정보" />
+      <InfoCard title={"현재회원종합"}>
+        <Grid container spacing={3}>
+          <Grid xs={12} sm={4} item>
+            <MiniCard title={"전체(어른/아이)"} content={`10/10`} style={{ flex: 1 }}>
+              <AccountCircle />
+            </MiniCard>
+          </Grid>
+          <Grid xs={12} sm={4} item>
+            <MiniCard
+              title={"이용중(어른/아이)"}
+              content={`10/10`}
+              color={"rgb(112, 174, 152)"}
+              style={{ flex: 1 }}
+            >
+              <ChildCare />
+            </MiniCard>
+          </Grid>
+          <Grid xs={12} sm={4} item>
+            <MiniCard
+              title={"이용완료(어른/아이)"}
+              content={`10/10`}
+              color={"rgb(157, 171, 221)"}
+              style={{ flex: 1 }}
+            >
+              <CheckCircle />
+            </MiniCard>
+          </Grid>
+        </Grid>
+      </InfoCard>
+      <InfoCard title={"이용중인 회원"}>
+        <Grid item xs={12}>
+          <TableContainer>
+            <Table className={styles.table}>
+              <TableHead>
+                <TableRow>
+                  <TableCell>구분</TableCell>
+                  <TableCell>아이이름</TableCell>
+                  <TableCell>회원번호</TableCell>
+                  <TableCell>이용시간</TableCell>
+                  <TableCell>퇴장시간</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody></TableBody>
+            </Table>
+          </TableContainer>
+        </Grid>
+      </InfoCard>
     </Layout>
   );
 };
