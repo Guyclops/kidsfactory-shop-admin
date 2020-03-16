@@ -5,35 +5,67 @@ import LoginField from "../components/input/LoginField";
 import LoginButton from "../components/button/LoginButton";
 import logo from "../images/kidsfactory-logo.png";
 import SEO from "../components/seo";
-import { Fragment } from "react";
+import Layout from "../components/layout";
+import { useState, useCallback } from "react";
+import { inject, observer } from "mobx-react";
+import Store from "../stores";
+import { navigate } from "gatsby";
 
-const LoginPage = () => {
+const LoginPage = (props: Store) => {
+  const { signin } = props;
+  const [id, setId] = useState("");
+  const [password, setPassword] = useState("");
+
+  const onChangeId = e => {
+    e.preventDefault();
+    setId(e.target.value);
+  };
+
+  const onChangePassword = e => {
+    e.preventDefault();
+    setPassword(e.target.value);
+  };
+
+  const signIn = useCallback(async () => {
+    const result = await signin.signIn(id, password);
+    if (result) navigate("/");
+  }, [id, password, signin]);
+
   return (
-    <Fragment>
+    <Layout headerVisible={false} footerVisible={false}>
       <SEO title="로그인" />
       <div css={style}>
         <LoginForm>
           <section className="logo">
-            <img src={logo} />
+            <img src={logo} alt="로고 이미지" />
           </section>
           <section className="form-item">
-            <LoginField placeholder="아이디를 입력해주세요." label="아이디" variant="outlined" />
+            <LoginField
+              placeholder="아이디를 입력해주세요."
+              label="아이디"
+              variant="outlined"
+              value={id}
+              onChange={onChangeId}
+            />
           </section>
           <section className="form-item">
             <LoginField
               placeholder="비밀번호를 입력해주세요."
               label="비밀번호"
               variant="outlined"
+              type="password"
+              value={password}
+              onChange={onChangePassword}
             />
           </section>
           <section className="form-item">
-            <LoginButton type="submit" style={{ width: "100%" }}>
+            <LoginButton type="submit" style={{ width: "100%" }} onClick={signIn}>
               로그인
             </LoginButton>
           </section>
         </LoginForm>
       </div>
-    </Fragment>
+    </Layout>
   );
 };
 
@@ -53,4 +85,4 @@ const style = css`
   }
 `;
 
-export default LoginPage;
+export default inject("signin")(observer(LoginPage));

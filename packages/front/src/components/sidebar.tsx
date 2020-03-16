@@ -6,9 +6,12 @@ import {
   ExpandMore,
   StarBorder,
   DashboardRounded as DashboardIcon,
+  ExitToApp,
 } from "@material-ui/icons";
 import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 import { navigate } from "gatsby";
+import storageKey from "../configs/storageKey";
+import util from "../utils/util";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -28,6 +31,14 @@ function Sidebar() {
 
   const navigatePage = () => {
     navigate("/");
+  };
+
+  const logout = () => {
+    const keys = Object.keys(storageKey);
+    for (const item of keys) {
+      util.removeData(item);
+    }
+    navigate("/login");
   };
 
   const classes = useStyles();
@@ -59,6 +70,12 @@ function Sidebar() {
             </ListItem>
           </List>
         </Collapse>
+        <ListItem button onClick={logout}>
+          <ListItemIcon>
+            <ExitToApp />
+          </ListItemIcon>
+          <ListItemText primary="로그아웃" />
+        </ListItem>
       </List>
     </div>
   );

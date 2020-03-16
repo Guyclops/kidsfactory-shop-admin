@@ -5,7 +5,8 @@
     "strictNullChecks": false,
     "noImplicitAny": false,
     "experimentalDecorators": true,
-    "allowJs": true
+    "allowJs": true,
+    "resolveJsonModule": true
   },
   "include": ["./src"],
   "exclude": ["node_modules", "dist"]
