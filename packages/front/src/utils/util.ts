@@ -4,7 +4,7 @@ class Util {
   };
 
   getData = (key: string) => {
-    return localStorage.getItem(key);
+    return JSON.parse(localStorage.getItem(key));
   };
 
   removeData = (key: string) => {
