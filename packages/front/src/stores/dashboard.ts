@@ -1,8 +1,8 @@
-import Store from ".";
+import { Store } from ".";
 import { observable, action, computed } from "mobx";
 import api from "../utils/api";
 
-class Dashboard {
+class DashboardStore {
   root: Store;
   @observable
   rooms = [];
@@ -29,4 +29,4 @@ class Dashboard {
   }
 }
 
-export default Dashboard;
+export default DashboardStore;

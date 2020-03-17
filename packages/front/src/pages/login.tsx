@@ -8,7 +8,7 @@ import SEO from "../components/seo";
 import Layout from "../components/layout";
 import { useState, useCallback } from "react";
 import { inject, observer } from "mobx-react";
-import Store from "../stores";
+import { Store } from "../stores";
 import { navigate } from "gatsby";
 
 const LoginPage = (props: Store) => {

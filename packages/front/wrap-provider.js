@@ -1,9 +1,7 @@
 import React from "react";
 import { Provider } from "mobx-react";
-import Store from "./src/stores/index";
+import store from "./src/stores/index";
 
-const root = new Store();
-
-const WrapProvider = ({ element }) => <Provider {...root}>{element}</Provider>;
+const WrapProvider = ({ element }) => <Provider {...store}>{element}</Provider>;
 
 export default WrapProvider;

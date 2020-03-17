@@ -7,6 +7,8 @@ import {
   IconButton,
   Toolbar,
   Typography,
+  Backdrop,
+  CircularProgress,
 } from "@material-ui/core";
 import { Menu as MenuIcon } from "@material-ui/icons";
 import { makeStyles, useTheme, Theme, createStyles } from "@material-ui/core/styles";
@@ -15,6 +17,8 @@ import Sidebar from "./sidebar";
 import util from "../utils/util";
 import storageKey from "../configs/storageKey";
 import { navigate } from "gatsby";
+import { inject, observer } from "mobx-react";
+import { Store } from "../stores";
 
 const drawerWidth = 240;
 
@@ -49,10 +53,14 @@ const useStyles = makeStyles((theme: Theme) =>
       flexGrow: 1,
       padding: theme.spacing(3),
     },
+    backdrop: {
+      zIndex: theme.zIndex.drawer + 1,
+      color: "rgb(255, 255, 255)",
+    },
   }),
 );
 
-interface LayoutProps {
+export interface LayoutProps extends Store {
   /** content */
   children?: React.ReactNode;
   /** header visible */
@@ -61,8 +69,9 @@ interface LayoutProps {
   footerVisible?: boolean;
 }
 
-function Layout(props: LayoutProps) {
-  const { children, headerVisible, footerVisible } = props;
+const Layout = (props: LayoutProps) => {
+  const { children, headerVisible, footerVisible, common } = props;
+  const { loading } = common;
   const classes = useStyles();
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -79,6 +88,9 @@ function Layout(props: LayoutProps) {
 
   return (
     <div className={classes.root}>
+      <Backdrop className={classes.backdrop} open={loading}>
+        <CircularProgress color="inherit" />
+      </Backdrop>
       {headerVisible ? (
         <>
           <CssBaseline />
@@ -150,11 +162,11 @@ function Layout(props: LayoutProps) {
       </main>
     </div>
   );
-}
+};
 
 Layout.defaultProps = {
   headerVisible: true,
   footerVisible: true,
 };
 
-export default Layout;
+export default inject("common")(observer(Layout));

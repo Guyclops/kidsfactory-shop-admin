@@ -16,7 +16,7 @@ import {
   makeStyles,
   createStyles,
 } from "@material-ui/core";
-import Store from "../stores";
+import { Store } from "../stores";
 
 const useStyles = makeStyles(() =>
   createStyles({

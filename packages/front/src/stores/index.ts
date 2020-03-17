@@ -1,17 +1,19 @@
 import CommonStore from "./common";
 import SignInStore from "./signin";
-import Dashboard from "./dashboard";
+import DashboardStore from "./dashboard";
 
-class Store {
-  public common: CommonStore;
-  public signin: SignInStore;
-  public dashboard: Dashboard;
+export class Store {
+  public common?: CommonStore;
+  public signin?: SignInStore;
+  public dashboard?: DashboardStore;
 
   constructor() {
     this.common = new CommonStore(this);
     this.signin = new SignInStore(this);
-    this.dashboard = new Dashboard(this);
+    this.dashboard = new DashboardStore(this);
   }
 }
 
-export default Store;
+const store = new Store();
+
+export default store;

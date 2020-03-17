@@ -1,4 +1,4 @@
-import Store from ".";
+import { Store } from ".";
 import { action } from "mobx";
 import api from "../utils/api";
 import util from "../utils/util";

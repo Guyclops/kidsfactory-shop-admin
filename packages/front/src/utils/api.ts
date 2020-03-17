@@ -2,6 +2,7 @@ import axios from "axios";
 import config from "../configs/config";
 import util from "./util";
 import storageKey from "../configs/storageKey";
+import store from "../stores";
 
 interface ApiMethod {
   body?: object;
@@ -32,6 +33,7 @@ const headerOption = (token?: string, option?: object) => {
 function call(type: string) {
   return async function(path: string, dataObj?: ApiMethod) {
     try {
+      store.common.toggleLoading();
       const method = type;
       let response;
       if (type === "get") {
@@ -54,6 +56,8 @@ function call(type: string) {
       const { response } = e;
       if (config.type === "dev") console.log("err data", response?.data);
       return response?.data;
+    } finally {
+      store.common.toggleLoading();
     }
   };
 }
