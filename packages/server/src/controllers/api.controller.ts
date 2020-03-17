@@ -45,11 +45,11 @@ class ApiController {
         roomService.getRooms(sno),
         logVisitService.sumOutVisitor(sno),
       ]);
-      let useAdult = 0;
-      let useChild = 0;
+      let adult = 0;
+      let child = 0;
       rooms.map((item: any) => {
-        useAdult += item.r_adult;
-        useChild += item.r_child;
+        adult += item.r_adult;
+        child += item.r_child;
         item.dataValues = {
           ...item.dataValues,
           user: {
@@ -58,7 +58,7 @@ class ApiController {
           time: util.useTime(item.r_in_date, item.r_before_min),
         };
       });
-      next(success.ok({ rooms, visit, use: { useAdult, useChild } }));
+      next(success.ok({ rooms, visit, use: { adult, child } }));
     } catch (e) {
       next(e);
     }
