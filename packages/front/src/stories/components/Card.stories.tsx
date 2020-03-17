@@ -1,8 +1,8 @@
 import React from "react";
-import InfoCard from "../components/card/InfoCard";
+import InfoCard from "../../components/card/InfoCard";
 import { Card } from "@material-ui/core";
 import { text, withKnobs } from "@storybook/addon-knobs";
-import MiniCard from "../components/card/MiniCard";
+import MiniCard from "../../components/card/MiniCard";
 
 export default {
   title: "Component|Card",

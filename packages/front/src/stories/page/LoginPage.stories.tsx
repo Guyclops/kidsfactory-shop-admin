@@ -1,11 +1,11 @@
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
 import { action } from "@storybook/addon-actions";
-import logo from "../images/kidsfactory-logo.png";
-import "./styles.css";
-import LoginForm from "../components/form/LoginForm";
-import LoginField from "../components/input/LoginField";
-import LoginButton from "../components/button/LoginButton";
+import logo from "../../images/kidsfactory-logo.png";
+import "../styles.css";
+import LoginForm from "../../components/form/LoginForm";
+import LoginField from "../../components/input/LoginField";
+import LoginButton from "../../components/button/LoginButton";
 
 export default {
   title: "Page|Login",

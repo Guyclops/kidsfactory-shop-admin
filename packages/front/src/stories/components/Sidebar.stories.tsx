@@ -1,5 +1,5 @@
 import React from "react";
-import Sidebar from "../components/sidebar";
+import Sidebar from "../../components/sidebar";
 import { Drawer, Hidden } from "@material-ui/core";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 

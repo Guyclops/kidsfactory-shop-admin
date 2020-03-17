@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
-import ColorItem from "../components/item/ColorItem";
+import ColorItem from "../../components/item/ColorItem";
 
 export default {
   title: "Colors|Color",
