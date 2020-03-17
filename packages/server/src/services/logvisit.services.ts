@@ -5,7 +5,7 @@ import moment = require("moment-timezone");
 const { LogVisits } = table;
 
 class LogVisitService {
-  async sumOutvisitor(sno: number) {
+  async sumOutVisitor(sno: number) {
     const date = moment()
       .startOf("day")
       .format("YYYY-MM-DD");
