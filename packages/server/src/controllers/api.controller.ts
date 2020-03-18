@@ -6,6 +6,8 @@ import { param } from "../cores/params.core";
 import roomService from "../services/room.services";
 import logVisitService from "../services/logvisit.services";
 import shopUserService from "../services/shopuser.services";
+import voucherService from "../services/voucher.services";
+import moment = require("moment-timezone");
 
 class ApiController {
   index(req: Request, res: Response, next: NextFunction) {
@@ -67,11 +69,21 @@ class ApiController {
   async shopUserInfo(req: Request, res: Response, next: NextFunction) {
     try {
       const sno = req.admin.no;
-      const [user, trend] = await Promise.all([
+      const start = moment()
+        .startOf("year")
+        .format("YYYY-MM-DD HH");
+      const end = moment()
+        .startOf("year")
+        .add(1, "year")
+        .format("YYYY-MM-DD HH");
+      const [userCount, voucherCount, outCount, newCount, newTrend] = await Promise.all([
         shopUserService.totalShopUserCount(sno),
-        shopUserService.newShopUserTrend(sno),
+        voucherService.voucherShopUserCount(sno),
+        shopUserService.outShopUserCount(sno),
+        shopUserService.newShopUserCount(sno, start, end),
+        shopUserService.newShopUserTrend(sno, start, end, "month"),
       ]);
-      next(success.ok({ user, trend }));
+      next(success.ok({ userCount, voucherCount, outCount, newCount, newTrend }));
     } catch (e) {
       next(e);
     }

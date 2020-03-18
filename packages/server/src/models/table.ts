@@ -8,6 +8,7 @@ import ExpireDateCoupon from "./expiredatecoupon";
 import LogCancelBuyCoupon from "./logcancelbuycoupon";
 import LogExpCoupon from "./logexpcoupon";
 import LogUseCoupon from "./logusecoupon";
+import LogOutUser from "./logoutuser";
 
 const table = {
   Shops,
@@ -20,6 +21,7 @@ const table = {
   LogCancelBuyCoupon,
   LogExpCoupon,
   LogUseCoupon,
+  LogOutUser,
 };
 
 export default table;

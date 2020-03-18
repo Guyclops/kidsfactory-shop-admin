@@ -2,13 +2,12 @@ import { DataTypes, Model } from "sequelize";
 import pool from ".";
 import Shops from "./shops";
 import Users from "./users";
-import ShopUsers from "./shopusers";
 
 const sequelize = pool.sequelize;
 
-class LogUseCoupon extends Model {}
+class LogOutUser extends Model {}
 
-LogUseCoupon.init(
+LogOutUser.init(
   {
     l_no: {
       type: DataTypes.INTEGER({ length: 11 }).UNSIGNED,
@@ -32,43 +31,42 @@ LogUseCoupon.init(
       allowNull: false,
       comment: "매장 회원 번호",
     },
-    l_r_no: {
+    l_coupon: {
       type: DataTypes.INTEGER({ length: 11 }),
       allowNull: false,
-      comment: "룸 번호",
+      comment: "정기권 갯수",
     },
-    l_count: {
+    l_stamp: {
       type: DataTypes.INTEGER({ length: 11 }),
       allowNull: false,
-      comment: "사용 정기권수",
-    },
-    l_child_name: {
-      type: DataTypes.STRING(22),
-      allowNull: false,
-      comment: "아이 이름",
+      comment: "스탬프 갯수",
     },
     l_reg_date: {
       type: DataTypes.DATE,
       allowNull: false,
       comment: "등록일",
     },
-    l_e_nos: {
+    l_term1: {
       type: DataTypes.TEXT,
       allowNull: true,
-      comment: "가져온 잔여 정기권 로그 번호",
+      comment: "시설물 이용 동의 내용",
+    },
+    l_reg_term1_date: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: null,
+      comment: "시설물 이용 동의 날짜",
     },
   },
   {
     sequelize,
-    tableName: "log_use_coupon",
-    modelName: "log_use_coupon",
+    tableName: "log_out_users",
+    modelName: "log_out_users",
     timestamps: false,
-    indexes: [{ name: "l_s_no", fields: ["l_s_no"] }],
   },
 );
 
-LogUseCoupon.belongsTo(Shops, { foreignKey: "l_s_no", targetKey: "s_no", as: "shop" });
-LogUseCoupon.belongsTo(Users, { foreignKey: "l_u_no", targetKey: "u_no", as: "user" });
-LogUseCoupon.belongsTo(ShopUsers, { foreignKey: "l_su_no", targetKey: "su_no", as: "shop_user" });
+LogOutUser.belongsTo(Shops, { foreignKey: "l_s_no", targetKey: "s_no", as: "shop" });
+LogOutUser.belongsTo(Users, { foreignKey: "l_u_no", targetKey: "u_no", as: "user" });
 
-export default LogUseCoupon;
+export default LogOutUser;
