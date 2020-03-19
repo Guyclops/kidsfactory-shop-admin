@@ -56,8 +56,8 @@ LogExpCoupon.init(
   },
 );
 
-LogExpCoupon.belongsTo(Shops, { foreignKey: "l_s_no", targetKey: "s_no", as: "shop" });
-LogExpCoupon.belongsTo(Users, { foreignKey: "l_u_no", targetKey: "u_no", as: "user" });
-LogExpCoupon.belongsTo(ShopUsers, { foreignKey: "l_su_no", targetKey: "su_no", as: "shop_user" });
+LogExpCoupon.belongsTo(Shops, { foreignKey: "l_s_no", targetKey: "s_no" });
+LogExpCoupon.belongsTo(Users, { foreignKey: "l_u_no", targetKey: "u_no" });
+LogExpCoupon.belongsTo(ShopUsers, { foreignKey: "l_su_no", targetKey: "su_no" });
 
 export default LogExpCoupon;

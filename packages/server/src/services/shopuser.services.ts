@@ -2,6 +2,7 @@ import ShopUsers from "../models/shopusers";
 import { Sequelize, Op } from "sequelize";
 import Users from "../models/users";
 import LogOutUser from "../models/logoutuser";
+import { util } from "../cores/misc.core";
 
 class ShopUserService {
   async totalShopUserCount(sno: number) {
@@ -98,6 +99,36 @@ class ShopUserService {
         },
       },
       group: group,
+    });
+    return result;
+  }
+
+  async accUserRank(sno: number, limit = 10) {
+    const rank = await ShopUsers.findAll({
+      raw: true,
+      attributes: [
+        "su_no",
+        "su_child_name",
+        ["su_visit_count", "count"],
+        [Sequelize.fn("CONCAT", Sequelize.col("user.u_phone")), "phone"],
+      ],
+      include: [
+        {
+          attributes: [],
+          model: Users,
+          where: Sequelize.where(Sequelize.fn("char_length", Sequelize.col("u_phone")), {
+            [Op.gt]: 3,
+          }),
+        },
+      ],
+      where: {
+        su_s_no: sno,
+      },
+      order: [["su_visit_count", "DESC"]],
+    });
+    const result = rank.slice(0, limit);
+    result.map((item: any) => {
+      item.phone = util.hyphenPhone(item.phone, true);
     });
     return result;
   }

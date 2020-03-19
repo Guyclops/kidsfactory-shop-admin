@@ -66,7 +66,7 @@ LogOutUser.init(
   },
 );
 
-LogOutUser.belongsTo(Shops, { foreignKey: "l_s_no", targetKey: "s_no", as: "shop" });
-LogOutUser.belongsTo(Users, { foreignKey: "l_u_no", targetKey: "u_no", as: "user" });
+LogOutUser.belongsTo(Shops, { foreignKey: "l_s_no", targetKey: "s_no" });
+LogOutUser.belongsTo(Users, { foreignKey: "l_u_no", targetKey: "u_no" });
 
 export default LogOutUser;

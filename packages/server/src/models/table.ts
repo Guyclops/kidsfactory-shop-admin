@@ -1,7 +1,7 @@
 import Shops from "./shops";
 import Rooms from "./rooms";
 import Users from "./users";
-import LogVisits from "./logvisit";
+import LogVisit from "./logvisit";
 import ShopUsers from "./shopusers";
 import LogBuyCoupon from "./logbuycoupon";
 import ExpireDateCoupon from "./expiredatecoupon";
@@ -14,7 +14,7 @@ const table = {
   Shops,
   Rooms,
   Users,
-  LogVisits,
+  LogVisit,
   ShopUsers,
   LogBuyCoupon,
   ExpireDateCoupon,

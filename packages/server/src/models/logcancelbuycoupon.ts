@@ -56,12 +56,11 @@ LogCancelBuyCoupon.init(
   },
 );
 
-LogCancelBuyCoupon.belongsTo(Shops, { foreignKey: "l_s_no", targetKey: "s_no", as: "shop" });
-LogCancelBuyCoupon.belongsTo(Users, { foreignKey: "l_u_no", targetKey: "u_no", as: "user" });
+LogCancelBuyCoupon.belongsTo(Shops, { foreignKey: "l_s_no", targetKey: "s_no" });
+LogCancelBuyCoupon.belongsTo(Users, { foreignKey: "l_u_no", targetKey: "u_no" });
 LogCancelBuyCoupon.belongsTo(ShopUsers, {
   foreignKey: "l_su_no",
   targetKey: "su_no",
-  as: "shop_user",
 });
 
 export default LogCancelBuyCoupon;

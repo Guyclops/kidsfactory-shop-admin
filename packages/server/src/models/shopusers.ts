@@ -158,7 +158,7 @@ ShopUsers.init(
   },
 );
 
-ShopUsers.belongsTo(Shops, { foreignKey: "su_s_no", targetKey: "s_no", as: "shop" });
-ShopUsers.belongsTo(Users, { foreignKey: "su_u_no", targetKey: "u_no", as: "user" });
+ShopUsers.belongsTo(Shops, { foreignKey: "su_s_no", targetKey: "s_no" });
+ShopUsers.belongsTo(Users, { foreignKey: "su_u_no", targetKey: "u_no" });
 
 export default ShopUsers;

@@ -62,12 +62,11 @@ ExpireDateCoupon.init(
   },
 );
 
-ExpireDateCoupon.belongsTo(Shops, { foreignKey: "e_s_no", targetKey: "s_no", as: "shop" });
-ExpireDateCoupon.belongsTo(Users, { foreignKey: "e_u_no", targetKey: "u_no", as: "user" });
+ExpireDateCoupon.belongsTo(Shops, { foreignKey: "e_s_no", targetKey: "s_no" });
+ExpireDateCoupon.belongsTo(Users, { foreignKey: "e_u_no", targetKey: "u_no" });
 ExpireDateCoupon.belongsTo(LogBuyCoupon, {
   foreignKey: "l_buy_l_no",
   targetKey: "l_no",
-  as: "log_buy_coupon",
 });
 
 export default ExpireDateCoupon;

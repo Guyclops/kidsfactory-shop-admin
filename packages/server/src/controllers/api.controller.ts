@@ -43,9 +43,16 @@ class ApiController {
   async getRooms(req: Request, res: Response, next: NextFunction) {
     try {
       const sno = req.admin.no;
+      const start = moment()
+        .startOf("day")
+        .format("YYYY-MM-DD HH");
+      const end = moment()
+        .startOf("day")
+        .add(1, "day")
+        .format("YYYY-MM-DD HH");
       const [rooms, visit] = await Promise.all([
         roomService.getRooms(sno),
-        logVisitService.sumOutVisitor(sno),
+        logVisitService.sumOutVisitor(sno, start, end),
       ]);
       let adult = 0;
       let child = 0;
@@ -76,14 +83,37 @@ class ApiController {
         .startOf("year")
         .add(1, "year")
         .format("YYYY-MM-DD HH");
-      const [userCount, voucherCount, outCount, newCount, newTrend] = await Promise.all([
+      const [
+        userCount,
+        voucherCount,
+        outCount,
+        newCount,
+        newTrend,
+        visitTrend,
+        voucher,
+        accRank,
+      ] = await Promise.all([
         shopUserService.totalShopUserCount(sno),
         voucherService.voucherShopUserCount(sno),
         shopUserService.outShopUserCount(sno),
         shopUserService.newShopUserCount(sno, start, end),
         shopUserService.newShopUserTrend(sno, start, end, "month"),
+        logVisitService.visitTrend(sno, start, end, "month"),
+        voucherService.totalVoucherCount(sno),
+        shopUserService.accUserRank(sno),
       ]);
-      next(success.ok({ userCount, voucherCount, outCount, newCount, newTrend }));
+      next(
+        success.ok({
+          userCount,
+          voucherCount,
+          outCount,
+          newCount,
+          newTrend,
+          visitTrend,
+          voucher,
+          accRank,
+        }),
+      );
     } catch (e) {
       next(e);
     }

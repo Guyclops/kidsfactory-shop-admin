@@ -8,9 +8,9 @@ import ShopUsers from "./shopusers";
 
 const sequelize = pool.sequelize;
 
-class LogVisits extends Model {}
+class LogVisit extends Model {}
 
-LogVisits.init(
+LogVisit.init(
   {
     l_no: {
       type: DataTypes.INTEGER({ length: 11 }).UNSIGNED,
@@ -108,9 +108,9 @@ LogVisits.init(
   },
 );
 
-LogVisits.belongsTo(Shops, { foreignKey: "l_s_no", targetKey: "s_no", as: "shop" });
-LogVisits.belongsTo(Users, { foreignKey: "l_u_no", targetKey: "u_no", as: "user" });
-LogVisits.belongsTo(Rooms, { foreignKey: "l_r_no", targetKey: "r_no", as: "room" });
-LogVisits.belongsTo(ShopUsers, { foreignKey: "l_su_no", targetKey: "su_no", as: "shop_user" });
+LogVisit.belongsTo(Shops, { foreignKey: "l_s_no", targetKey: "s_no", as: "shop" });
+LogVisit.belongsTo(Users, { foreignKey: "l_u_no", targetKey: "u_no", as: "user" });
+LogVisit.belongsTo(Rooms, { foreignKey: "l_r_no", targetKey: "r_no", as: "room" });
+LogVisit.belongsTo(ShopUsers, { foreignKey: "l_su_no", targetKey: "su_no", as: "shop_user" });
 
-export default LogVisits;
+export default LogVisit;
