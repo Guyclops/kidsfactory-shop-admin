@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { Divider, List, ListItem, ListItemIcon, ListItemText, Collapse } from "@material-ui/core";
 import {
-  MoveToInbox as InboxIcon,
   ExpandLess,
   ExpandMore,
-  StarBorder,
   DashboardRounded as DashboardIcon,
   ExitToApp,
+  Storage,
+  FolderShared,
 } from "@material-ui/icons";
 import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 import { navigate } from "gatsby";
@@ -29,8 +29,8 @@ function Sidebar() {
     setOpen(!open);
   };
 
-  const navigatePage = () => {
-    navigate("/");
+  const navigatePage = path => {
+    navigate(`${path}`);
   };
 
   const logout = () => {
@@ -46,7 +46,7 @@ function Sidebar() {
     <div>
       <div className={classes.toolbar} />
       <List>
-        <ListItem button onClick={navigatePage}>
+        <ListItem button onClick={() => navigatePage("/")}>
           <ListItemIcon>
             <DashboardIcon />
           </ListItemIcon>
@@ -55,21 +55,22 @@ function Sidebar() {
         <Divider />
         <ListItem button onClick={handleClick}>
           <ListItemIcon>
-            <InboxIcon />
+            <Storage />
           </ListItemIcon>
-          <ListItemText primary="Inbox" />
+          <ListItemText primary="통계" />
           {open ? <ExpandLess /> : <ExpandMore />}
         </ListItem>
         <Collapse in={open} timeout="auto" unmountOnExit>
-          <List component="div" disablePadding>
+          <List component="div" disablePadding onClick={() => navigatePage("/report/total")}>
             <ListItem button className={classes.nested}>
               <ListItemIcon>
-                <StarBorder />
+                <FolderShared />
               </ListItemIcon>
-              <ListItemText primary="Starred" />
+              <ListItemText primary="전체" />
             </ListItem>
           </List>
         </Collapse>
+        <Divider />
         <ListItem button onClick={logout}>
           <ListItemIcon>
             <ExitToApp />

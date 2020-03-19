@@ -52,7 +52,7 @@ const IndexPage = (props: Store) => {
           <Grid xs={12} sm={4} item>
             <MiniCard
               title={"이용중(어른/아이)"}
-              content={`${visit.adult}/${visit.child}`}
+              content={`${use.adult}/${use.child}`}
               color={"rgb(112, 174, 152)"}
               style={{ flex: 1 }}
             >
@@ -62,7 +62,7 @@ const IndexPage = (props: Store) => {
           <Grid xs={12} sm={4} item>
             <MiniCard
               title={"이용완료(어른/아이)"}
-              content={`${use.adult}/${use.child}`}
+              content={`${visit.adult}/${visit.child}`}
               color={"rgb(157, 171, 221)"}
               style={{ flex: 1 }}
             >
