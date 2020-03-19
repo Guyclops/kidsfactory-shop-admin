@@ -73,7 +73,7 @@ class ApiController {
     }
   }
 
-  async shopUserInfo(req: Request, res: Response, next: NextFunction) {
+  async shopTotalInfo(req: Request, res: Response, next: NextFunction) {
     try {
       const sno = req.admin.no;
       const start = moment()

@@ -13,7 +13,7 @@ class ApiRoute {
     this.apiRouter.get("/", apiController.index);
     this.apiRouter.post("/signIn", apiController.postSignIn);
     this.apiRouter.get("/rooms", auth.verify, apiController.getRooms);
-    this.apiRouter.get("/shop/user/info", auth.verify, apiController.shopUserInfo);
+    this.apiRouter.get("/shop/total/info", auth.verify, apiController.shopTotalInfo);
   }
 }
 
