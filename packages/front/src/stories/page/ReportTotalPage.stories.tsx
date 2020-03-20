@@ -16,7 +16,7 @@ import { Person, ConfirmationNumber } from "@material-ui/icons";
 import { Bar } from "react-chartjs-2";
 
 export default {
-  title: "Page|Report Total Page",
+  title: "Page|ReportTotal",
   parameters: {
     docs: {
       inlineStories: false,
