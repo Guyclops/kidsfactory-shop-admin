@@ -29,7 +29,7 @@ const useStyles = makeStyles(() =>
 
 const IndexPage = (props: Store) => {
   const { dashboard } = props;
-  const { totalAdultCount, totalChildCount, use, visit, rooms } = dashboard;
+  const { totalAdultCount, totalChildCount, use, visit, rooms, roomCount } = dashboard;
   const styles = useStyles();
 
   useEffect(() => {
@@ -71,7 +71,7 @@ const IndexPage = (props: Store) => {
           </Grid>
         </Grid>
       </InfoCard>
-      <InfoCard title={"이용중인 회원"}>
+      <InfoCard title={`이용중인 회원(${roomCount}개 그룹 이용중)`}>
         <Grid item xs={12}>
           <TableContainer>
             <Table className={styles.table}>

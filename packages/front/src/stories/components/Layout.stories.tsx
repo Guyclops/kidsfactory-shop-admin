@@ -1,6 +1,7 @@
 import React from "react";
 import Layout from "../../components/layout";
 import { withKnobs } from "@storybook/addon-knobs";
+import WrapStorybook from "../wrap-storybook";
 
 export default {
   title: "Component|Layout",
@@ -10,8 +11,10 @@ export default {
 
 export const Default = () => {
   return (
-    <Layout>
-      <div></div>
-    </Layout>
+    <WrapStorybook>
+      <Layout>
+        <div></div>
+      </Layout>
+    </WrapStorybook>
   );
 };

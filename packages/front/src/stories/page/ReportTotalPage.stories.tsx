@@ -12,7 +12,7 @@ import {
 } from "@material-ui/core";
 import MiniCard from "../../components/card/MiniCard";
 import WrapStorybook from "../wrap-storybook";
-import { Person } from "@material-ui/icons";
+import { Person, ConfirmationNumber } from "@material-ui/icons";
 import { Bar } from "react-chartjs-2";
 
 export default {
@@ -110,22 +110,22 @@ export const TotalPage = () => {
         <InfoCard title="회원 종합">
           <Grid container spacing={3}>
             <Grid item xs={12} sm={3}>
-              <MiniCard title="전체 회원" content="0명">
+              <MiniCard title="전체 회원" content="0명" color={"rgb(153, 102, 255)"}>
                 <Person />
               </MiniCard>
             </Grid>
             <Grid item xs={12} sm={3}>
-              <MiniCard title="정기권 구매 회원" content="0명">
+              <MiniCard title="정기권 구매 회원" content="0명" color={"rgb(75, 192, 192)"}>
                 <Person />
               </MiniCard>
             </Grid>
             <Grid item xs={12} sm={3}>
-              <MiniCard title="탈퇴 회원" content="0명">
+              <MiniCard title="탈퇴 회원" content="0명" color={"rgb(255, 99, 132)"}>
                 <Person />
               </MiniCard>
             </Grid>
             <Grid item xs={12} sm={3}>
-              <MiniCard title="올해 신규 회원" content="0명">
+              <MiniCard title="올해 신규 회원" content="0명" color={"rgb(255, 206, 86)"}>
                 <Person />
               </MiniCard>
             </Grid>
@@ -140,23 +140,23 @@ export const TotalPage = () => {
         <InfoCard title="정기권">
           <Grid container spacing={3}>
             <Grid item xs={12} sm={3}>
-              <MiniCard title="전체 정기권 발행" content="0개">
-                <Person />
+              <MiniCard title="전체 정기권 발행" content="0개" color={"rgb(153, 102, 255)"}>
+                <ConfirmationNumber />
               </MiniCard>
             </Grid>
             <Grid item xs={12} sm={3}>
-              <MiniCard title="정기권 사용/만료" content="0개">
-                <Person />
+              <MiniCard title="정기권 사용/만료" content="0개" color={"rgb(75, 192, 192)"}>
+                <ConfirmationNumber />
               </MiniCard>
             </Grid>
             <Grid item xs={12} sm={3}>
-              <MiniCard title="정기권 취소/탈퇴" content="0명">
-                <Person />
+              <MiniCard title="정기권 취소/탈퇴" content="0명" color={"rgb(255, 99, 132)"}>
+                <ConfirmationNumber />
               </MiniCard>
             </Grid>
             <Grid item xs={12} sm={3}>
-              <MiniCard title="잔여 정기권" content="0명">
-                <Person />
+              <MiniCard title="잔여 정기권" content="0명" color={"rgb(255, 206, 86)"}>
+                <ConfirmationNumber />
               </MiniCard>
             </Grid>
           </Grid>
@@ -166,10 +166,12 @@ export const TotalPage = () => {
             <TableContainer>
               <Table>
                 <TableHead>
-                  <TableCell align="center">순위</TableCell>
-                  <TableCell align="center">아이 이름</TableCell>
-                  <TableCell align="center">전화번호</TableCell>
-                  <TableCell align="center">입장횟수</TableCell>
+                  <TableRow>
+                    <TableCell align="center">순위</TableCell>
+                    <TableCell align="center">아이 이름</TableCell>
+                    <TableCell align="center">전화번호</TableCell>
+                    <TableCell align="center">입장횟수</TableCell>
+                  </TableRow>
                 </TableHead>
                 <TableBody>
                   <TableRow></TableRow>

@@ -15,11 +15,20 @@ class DashboardStore {
 
   @action
   getRoomInfo = async () => {
-    const result = await api.get("/rooms");
-    this.rooms = result.rooms;
-    this.visit = result.visit;
-    this.use = result.use;
+    try {
+      const result = await api.get("/rooms");
+      this.rooms = result.rooms;
+      this.visit = result.visit;
+      this.use = result.use;
+      return true;
+    } catch (e) {
+      return false;
+    }
   };
+
+  @computed get roomCount() {
+    return this.rooms.length;
+  }
 
   @computed get totalAdultCount() {
     return this.visit.adult + this.use.adult;
