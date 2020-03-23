@@ -141,7 +141,7 @@ class TotalReportStore {
       };
 
       result.visitTrend.map(item => {
-        const index = parseInt(item.date.substr(item.date.indexOf("-") + 1)) - 1;
+        const index = parseInt(item.month.substr(item.month.indexOf("-") + 1)) - 1;
         visitAdultData[index] = item.adult;
         visitChildData[index] = item.child;
       });
