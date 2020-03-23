@@ -1,5 +1,6 @@
 import table from "../models/table";
 import { Op, Sequelize } from "sequelize";
+import Users from "../models/users";
 
 const { LogVisit } = table;
 
@@ -23,17 +24,25 @@ class LogVisitService {
     });
   }
 
-  async visitTrend(sno: number, start: string, end: string, type: "day" | "month" | "year") {
+  async visitTrend(
+    sno: number,
+    start: string,
+    end: string,
+    type: "time" | "day" | "month" | "year",
+  ) {
     let group;
     switch (type) {
       case "day":
-        group = [Sequelize.fn("date_format", Sequelize.col("l_reg_date"), "%Y-%m-%d"), "date"];
+        group = [Sequelize.fn("date_format", Sequelize.col("l_reg_date"), "%Y-%m-%d"), type];
         break;
       case "month":
-        group = [Sequelize.fn("date_format", Sequelize.col("l_reg_date"), "%Y-%m"), "date"];
+        group = [Sequelize.fn("date_format", Sequelize.col("l_reg_date"), "%Y-%m"), type];
+        break;
+      case "time":
+        group = [Sequelize.fn("date_format", Sequelize.col("l_reg_date"), "%H"), type];
         break;
       default:
-        group = [Sequelize.fn("date_format", Sequelize.col("l_reg_date"), "%Y"), "date"];
+        group = [Sequelize.fn("date_format", Sequelize.col("l_reg_date"), "%Y"), type];
     }
     const result = await LogVisit.findAll({
       attributes: [
@@ -49,6 +58,35 @@ class LogVisitService {
         },
       },
       group: group,
+      raw: true,
+    });
+    return result;
+  }
+
+  async visitList(sno: number, start: string, end: string) {
+    const result = await LogVisit.findAll({
+      attributes: [
+        ["l_adult", "adult"],
+        ["l_child", "child"],
+        ["l_reg_date", "date"],
+        ["l_type", "type"],
+        [Sequelize.fn("CONCAT", Sequelize.col("user.u_phone")), "phone"],
+      ],
+      include: [
+        {
+          model: Users,
+          as: "user",
+          attributes: [],
+        },
+      ],
+      where: {
+        l_s_no: sno,
+        l_reg_date: {
+          [Op.between]: [start, end],
+        },
+      },
+      order: [["l_reg_date", "ASC"]],
+      raw: true,
     });
     return result;
   }

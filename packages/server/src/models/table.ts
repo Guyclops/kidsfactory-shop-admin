@@ -9,6 +9,10 @@ import LogCancelBuyCoupon from "./logcancelbuycoupon";
 import LogExpCoupon from "./logexpcoupon";
 import LogUseCoupon from "./logusecoupon";
 import LogOutUser from "./logoutuser";
+import Gifts from "./gifts";
+import UserGifts from "./usergifts";
+import LogStamp from "./logstamp";
+import LogStampGift from "./logstampgift";
 
 const table = {
   Shops,
@@ -22,6 +26,10 @@ const table = {
   LogExpCoupon,
   LogUseCoupon,
   LogOutUser,
+  Gifts,
+  UserGifts,
+  LogStamp,
+  LogStampGift,
 };
 
 export default table;

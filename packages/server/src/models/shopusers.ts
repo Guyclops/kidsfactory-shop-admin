@@ -68,17 +68,17 @@ ShopUsers.init(
       comment: "아이이름 3",
     },
     su_birth: {
-      type: DataTypes.DATE,
+      type: DataTypes.DATEONLY,
       allowNull: false,
       comment: "아이생일 1",
     },
     su_birth2: {
-      type: DataTypes.DATE,
+      type: DataTypes.DATEONLY,
       allowNull: false,
       comment: "아이생일 2",
     },
     su_birth3: {
-      type: DataTypes.DATE,
+      type: DataTypes.DATEONLY,
       allowNull: false,
       comment: "아이생일 3",
     },

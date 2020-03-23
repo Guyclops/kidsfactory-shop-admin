@@ -46,6 +46,38 @@ class ShopUserService {
     return result.get("total");
   }
 
+  async outShopUserTrend(sno: number, start: string, end: string, type: "day" | "month" | "year") {
+    let group;
+    switch (type) {
+      case "day":
+        group = [Sequelize.fn("date_format", Sequelize.col("l_reg_date"), "%Y-%m-%d"), "date"];
+        break;
+      case "month":
+        group = [Sequelize.fn("date_format", Sequelize.col("l_reg_date"), "%Y-%m"), "date"];
+        break;
+      default:
+        group = [Sequelize.fn("date_format", Sequelize.col("l_reg_date"), "%Y"), "date"];
+    }
+    const result = await LogOutUser.findAll({
+      attributes: [
+        group,
+        [Sequelize.fn("count", Sequelize.col("l_no")), "total"],
+        [Sequelize.fn("ifnull", Sequelize.fn("sum", Sequelize.col("l_stamp")), 0), "stamp"],
+        [Sequelize.fn("ifnull", Sequelize.fn("sum", Sequelize.col("l_coupon")), 0), "voucher"],
+      ],
+      where: {
+        l_s_no: sno,
+        l_reg_date: {
+          [Op.between]: [start, end],
+        },
+      },
+      group,
+      raw: true,
+    });
+
+    return result;
+  }
+
   async newShopUserCount(sno: number, start: string, end: string) {
     const result = await ShopUsers.findOne({
       attributes: [[Sequelize.fn("count", Sequelize.col("su_no")), "total"]],

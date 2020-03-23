@@ -38,7 +38,7 @@ ExpireDateCoupon.init(
       comment: "정기권 구매 번호",
     },
     e_exp_date: {
-      type: DataTypes.DATE,
+      type: DataTypes.DATEONLY,
       allowNull: false,
       comment: "정기권 만료일",
     },

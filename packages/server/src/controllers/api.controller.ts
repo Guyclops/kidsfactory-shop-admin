@@ -8,6 +8,8 @@ import logVisitService from "../services/logvisit.services";
 import shopUserService from "../services/shopuser.services";
 import voucherService from "../services/voucher.services";
 import moment = require("moment-timezone");
+import stampService from "../services/stamp.services";
+import giftService from "../services/gift.services";
 
 class ApiController {
   index(req: Request, res: Response, next: NextFunction) {
@@ -73,7 +75,7 @@ class ApiController {
     }
   }
 
-  async shopTotalInfo(req: Request, res: Response, next: NextFunction) {
+  async shopInfoTotal(req: Request, res: Response, next: NextFunction) {
     try {
       const sno = req.admin.no;
       const start = moment()
@@ -112,6 +114,103 @@ class ApiController {
           visitTrend,
           voucher,
           accRank,
+        }),
+      );
+    } catch (e) {
+      next(e);
+    }
+  }
+
+  async shopInfoDaily(req: Request, res: Response, next: NextFunction) {
+    try {
+      const sno = req.admin.no;
+      const start = param(req.query, "date", moment().format("YYYY-MM-DD"));
+      const end = moment(start)
+        .startOf("day")
+        .add(1, "day")
+        .format("YYYY-MM-DD");
+      const [
+        newCount,
+        visitTrend,
+        outTrend,
+        voucher,
+        stampAdd,
+        stampMinus,
+        visitList,
+        gift,
+      ] = await Promise.all<any>([
+        shopUserService.newShopUserCount(sno, start, end),
+        logVisitService.visitTrend(sno, start, end, "time"),
+        shopUserService.outShopUserTrend(sno, start, end, "day"),
+        voucherService.dateVoucherCount(sno, start, end, "day"),
+        stampService.dateStampCount(sno, start, end, "day", ["add", "add_pad"]),
+        stampService.dateStampCount(sno, start, end, "day", ["minus_pad"]),
+        logVisitService.visitList(sno, start, end),
+        giftService.countStampGifts(sno, start, end),
+      ]);
+      let adultCount = 0;
+      let childCount = 0;
+
+      const stamp = {
+        add: 0,
+        minus: 0,
+        out: 0,
+      };
+
+      visitTrend.map(item => {
+        adultCount += item.adult;
+        childCount += item.child;
+      });
+      let outCount = 0;
+      outTrend.map(item => {
+        outCount += item.total;
+        stamp.out += item.stamp;
+      });
+
+      let publish = 0;
+      let use = 0;
+      let expire = 0;
+      let cancel = 0;
+      let out = 0;
+      voucher.publish.map(item => {
+        publish += item.total;
+      });
+      voucher.use.map(item => {
+        use += item.total;
+      });
+      voucher.expire.map(item => {
+        expire += item.total;
+      });
+      voucher.cancel.map(item => {
+        cancel += item.total;
+      });
+      voucher.out.map(item => {
+        out += item.total;
+      });
+
+      stampAdd.map(item => {
+        stamp.add += item.total;
+      });
+      stampMinus.map(item => {
+        stamp.minus += item.total;
+      });
+      next(
+        success.ok({
+          newCount,
+          adultCount,
+          childCount,
+          outCount,
+          visitTrend,
+          voucher: {
+            publish,
+            use,
+            expire,
+            cancel,
+            out,
+          },
+          stamp,
+          visitList,
+          gift,
         }),
       );
     } catch (e) {

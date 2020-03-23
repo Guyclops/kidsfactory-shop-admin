@@ -35,7 +35,7 @@ Users.init(
       comment: "아이 이름(사용 안함)",
     },
     u_birth: {
-      type: DataTypes.DATE,
+      type: DataTypes.DATEONLY,
       allowNull: false,
       comment: "생일",
     },
