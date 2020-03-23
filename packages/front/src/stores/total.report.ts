@@ -38,7 +38,7 @@ class TotalReportStore {
   @action
   getLoadReport = async (setNewData, setVisitData) => {
     try {
-      const result = await api.get("/shop/total/info");
+      const result = await api.get("/shop/info/total");
       this.userCount = result.userCount;
       this.voucherCount = result.voucherCount;
       this.outCount = result.outCount;

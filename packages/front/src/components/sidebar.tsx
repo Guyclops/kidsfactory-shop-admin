@@ -62,11 +62,25 @@ function Sidebar() {
         </ListItem>
         <Collapse in={open} timeout="auto" unmountOnExit>
           <List component="div" disablePadding onClick={() => navigatePage("/report/total")}>
-            <ListItem button className={classes.nested}>
+            <ListItem
+              button
+              className={classes.nested}
+              onClick={() => navigatePage("/report/total")}
+            >
               <ListItemIcon>
                 <FolderShared />
               </ListItemIcon>
               <ListItemText primary="전체" />
+            </ListItem>
+            <ListItem
+              button
+              className={classes.nested}
+              onClick={() => navigatePage("/report/daily")}
+            >
+              <ListItemIcon>
+                <FolderShared />
+              </ListItemIcon>
+              <ListItemText primary="일별" />
             </ListItem>
           </List>
         </Collapse>
