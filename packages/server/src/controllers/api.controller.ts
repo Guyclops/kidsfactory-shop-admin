@@ -217,6 +217,104 @@ class ApiController {
       next(e);
     }
   }
+
+  async shopInfoMonthly(req: Request, res: Response, next: NextFunction) {
+    try {
+      const sno = req.admin.no;
+      const start = param(req.query, "date", moment().format("YYYY-MM"));
+      const end = moment(start)
+        .add(1, "month")
+        .format("YYYY-MM");
+
+      const [
+        newShopUser,
+        outShopUser,
+        visitTrend,
+        voucherCount,
+        addStamp,
+        minusStamp,
+        gift,
+      ] = await Promise.all<any>([
+        shopUserService.newShopUserTrend(sno, start, end, "month"),
+        shopUserService.outShopUserTrend(sno, start, end, "month"),
+        logVisitService.visitTrend(sno, start, end, "month"),
+        voucherService.dateVoucherCount(sno, start, end, "month"),
+        stampService.dateStampCount(sno, start, end, "month", ["add", "add_pad"]),
+        stampService.dateStampCount(sno, start, end, "month", ["minus_pad"]),
+        giftService.countStampGifts(sno, start, end),
+      ]);
+
+      const user = {
+        new: 0,
+        out: 0,
+        adult: 0,
+        child: 0,
+      };
+
+      const stamp = {
+        add: 0,
+        minus: 0,
+        out: 0,
+      };
+
+      newShopUser.map(item => {
+        user.new += Number(item.total);
+      });
+
+      outShopUser.map(item => {
+        user.out += Number(item.total);
+        stamp.out += Number(item.stamp);
+      });
+
+      visitTrend.map(item => {
+        user.adult += item.adult;
+        user.child += item.child;
+      });
+
+      const voucher = {
+        publish: 0,
+        use: 0,
+        expire: 0,
+        cancel: 0,
+        out: 0,
+      };
+
+      voucherCount.publish.map(item => {
+        voucher.publish += item.total;
+      });
+      voucherCount.use.map(item => {
+        voucher.use += item.total;
+      });
+      voucherCount.expire.map(item => {
+        voucher.expire += item.total;
+      });
+      voucherCount.cancel.map(item => {
+        voucher.cancel += item.total;
+      });
+      voucherCount.out.map(item => {
+        voucher.out += item.total;
+      });
+
+      addStamp.map(item => {
+        stamp.add += item.total;
+      });
+
+      minusStamp.map(item => {
+        stamp.minus += item.total;
+      });
+
+      next(
+        success.ok({
+          user,
+          voucher,
+          stamp,
+          gift,
+        }),
+      );
+    } catch (e) {
+      next(e);
+    }
+  }
 }
 
 const apiController: ApiController = new ApiController();

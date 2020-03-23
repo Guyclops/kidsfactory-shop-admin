@@ -15,6 +15,7 @@ class ApiRoute {
     this.apiRouter.get("/rooms", auth.verify, apiController.getRooms);
     this.apiRouter.get("/shop/info/total", auth.verify, apiController.shopInfoTotal);
     this.apiRouter.get("/shop/info/daily", auth.verify, apiController.shopInfoDaily);
+    this.apiRouter.get("/shop/info/monthly", auth.verify, apiController.shopInfoMonthly);
   }
 }
 

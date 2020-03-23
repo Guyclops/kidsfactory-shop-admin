@@ -131,6 +131,7 @@ class ShopUserService {
         },
       },
       group: group,
+      raw: true,
     });
     return result;
   }
