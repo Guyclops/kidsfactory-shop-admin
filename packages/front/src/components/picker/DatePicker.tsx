@@ -8,7 +8,7 @@ import MomentUtils from "@date-io/moment";
 
 const DatePicker = (props: KeyboardDatePickerProps) => {
   return (
-    <MuiPickersUtilsProvider utils={MomentUtils}>
+    <MuiPickersUtilsProvider utils={MomentUtils} locale={"ko"}>
       <KeyboardDatePicker
         disableToolbar
         variant="inline"

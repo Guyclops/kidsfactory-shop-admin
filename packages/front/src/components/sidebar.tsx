@@ -61,7 +61,7 @@ function Sidebar() {
           {open ? <ExpandLess /> : <ExpandMore />}
         </ListItem>
         <Collapse in={open} timeout="auto" unmountOnExit>
-          <List component="div" disablePadding onClick={() => navigatePage("/report/total")}>
+          <List component="div" disablePadding>
             <ListItem
               button
               className={classes.nested}
@@ -81,6 +81,16 @@ function Sidebar() {
                 <FolderShared />
               </ListItemIcon>
               <ListItemText primary="일별" />
+            </ListItem>
+            <ListItem
+              button
+              className={classes.nested}
+              onClick={() => navigatePage("/report/monthly")}
+            >
+              <ListItemIcon>
+                <FolderShared />
+              </ListItemIcon>
+              <ListItemText primary="월별" />
             </ListItem>
           </List>
         </Collapse>
