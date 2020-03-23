@@ -170,7 +170,7 @@ class ShopUserService {
   async visitRank(sno: number, start: string, end: string, rank: number) {
     let list = await LogVisit.findAll({
       attributes: [
-        "l_child_name",
+        ["l_child_name", "childName"],
         [Sequelize.fn("CONCAT", Sequelize.col("user.u_phone")), "phone"],
         [Sequelize.fn("count", Sequelize.col("l_no")), "total"],
       ],
