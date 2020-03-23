@@ -234,6 +234,7 @@ class ApiController {
         addStamp,
         minusStamp,
         gift,
+        visitRank,
       ] = await Promise.all<any>([
         shopUserService.newShopUserTrend(sno, start, end, "month"),
         shopUserService.outShopUserTrend(sno, start, end, "month"),
@@ -242,6 +243,7 @@ class ApiController {
         stampService.dateStampCount(sno, start, end, "month", ["add", "add_pad"]),
         stampService.dateStampCount(sno, start, end, "month", ["minus_pad"]),
         giftService.countStampGifts(sno, start, end),
+        shopUserService.visitRank(sno, start, end, 10),
       ]);
 
       const user = {
@@ -309,6 +311,7 @@ class ApiController {
           voucher,
           stamp,
           gift,
+          visitRank,
         }),
       );
     } catch (e) {

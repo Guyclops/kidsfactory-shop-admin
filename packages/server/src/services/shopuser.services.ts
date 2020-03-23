@@ -3,6 +3,7 @@ import { Sequelize, Op } from "sequelize";
 import Users from "../models/users";
 import LogOutUser from "../models/logoutuser";
 import { util } from "../cores/misc.core";
+import LogVisit from "../models/logvisit";
 
 class ShopUserService {
   async totalShopUserCount(sno: number) {
@@ -164,6 +165,48 @@ class ShopUserService {
       item.phone = util.hyphenPhone(item.phone, true);
     });
     return result;
+  }
+
+  async visitRank(sno: number, start: string, end: string, rank: number) {
+    let list = await LogVisit.findAll({
+      attributes: [
+        "l_child_name",
+        [Sequelize.fn("CONCAT", Sequelize.col("user.u_phone")), "phone"],
+        [Sequelize.fn("count", Sequelize.col("l_no")), "total"],
+      ],
+      include: [
+        {
+          attributes: [],
+          model: ShopUsers,
+          as: "shop_user",
+        },
+        {
+          attributes: [],
+          model: Users,
+          as: "user",
+          where: Sequelize.where(Sequelize.fn("char_length", Sequelize.col("u_phone")), {
+            [Op.gt]: 3,
+          }),
+        },
+      ],
+      where: {
+        l_s_no: sno,
+        l_type: "in",
+        l_reg_date: {
+          [Op.between]: [start, end],
+        },
+      },
+      group: ["l_u_no"],
+      raw: true,
+    });
+    list.map((item: any) => {
+      item.phone = util.hyphenPhone(item.phone, true);
+    });
+    list = list.sort((a: any, b: any) => (a.total < b.total ? 1 : -1));
+    if (rank !== undefined) {
+      list = list.slice(0, rank);
+    }
+    return list;
   }
 }
 
