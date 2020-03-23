@@ -1,6 +1,7 @@
 import table from "../models/table";
 import { Op, Sequelize } from "sequelize";
 import Users from "../models/users";
+import { util } from "../cores/misc.core";
 
 const { LogVisit } = table;
 
@@ -87,6 +88,9 @@ class LogVisitService {
       },
       order: [["l_reg_date", "ASC"]],
       raw: true,
+    });
+    (result as Array<any>).map(item => {
+      item.phone = util.hyphenPhone(item.phone, true);
     });
     return result;
   }
