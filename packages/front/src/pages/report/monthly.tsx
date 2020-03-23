@@ -28,7 +28,7 @@ const useStyles = makeStyles(() =>
 
 const ReportMonthly = (props: Store) => {
   const { monthlyReport } = props;
-  const { user, voucher, stamp, gift } = monthlyReport;
+  const { user, voucher, stamp, gift, visitRank } = monthlyReport;
   const styles = useStyles();
   const [date, setDate] = useState(moment().format("YYYY-MM"));
 
@@ -119,6 +119,16 @@ const ReportMonthly = (props: Store) => {
                 <TableCell>입장횟수</TableCell>
               </TableRow>
             </TableHead>
+            <TableBody>
+              {visitRank.map((item, index) => (
+                <TableRow key={`rank-${index}`}>
+                  <TableCell>{index + 1}</TableCell>
+                  <TableCell>{item.childName}</TableCell>
+                  <TableCell>{item.phone}</TableCell>
+                  <TableCell>{item.total}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
           </Table>
         </TableContainer>
       </InfoCard>

@@ -35,6 +35,13 @@ class MonthlyReportStore {
     use: 0,
   };
 
+  @observable
+  visitRank: Array<{
+    childName: string;
+    phone: string;
+    total: number;
+  }> = [];
+
   constructor(root: Store) {
     this.root = root;
   }
@@ -46,6 +53,7 @@ class MonthlyReportStore {
     this.voucher = result.voucher;
     this.stamp = result.stamp;
     this.gift = result.gift;
+    this.visitRank = result.visitRank;
   }
 }
 
