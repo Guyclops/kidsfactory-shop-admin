@@ -34,6 +34,8 @@
 
 - gatsbyjs(react)
 
+- mobx
+
 - storybook
 
 - cypress
